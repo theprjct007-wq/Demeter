@@ -1,0 +1,1168 @@
+/* ==========================================================================
+   Demeter - Vibrant Neumorphic Theme (Soft UI)
+   Tactile 3D Extrusions, Sunken Wells, Lively Color Accents & Jewel Signals
+   Supports automatic Light & Dark modes via system preference & data-theme
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens: Lively Neumorphic Light Mode
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"],
+body.light-theme {
+  /* Neumorphic Canvas & Surfaces (Soft crisp porcelain-slate) */
+  --bg: #ebf0f7;
+  --panel: #ebf0f7;
+  --panel-hover: #e3e9f3;
+  --panel-sunken: #e2e8f2;
+  --panel-elevated: #f0f4fa;
+
+  /* Subtle 3D Edge Boundaries */
+  --border-highlight: rgba(255, 255, 255, 0.9);
+  --border-shadow: rgba(166, 180, 200, 0.35);
+  --border: rgba(166, 180, 200, 0.28);
+  --border-hover: rgba(99, 102, 241, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(255, 255, 255, 0.7);
+  --input-border: rgba(166, 180, 200, 0.3);
+
+  /* Typography */
+  --text: #1e293b;
+  --text-dim: #475569;
+  --text-muted: #64748b;
+
+  /* Lively Primary Brand & Accent (Electric Indigo & Violet) */
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #7c3aed 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #6d28d9 100%);
+  --accent-shadow: rgba(99, 102, 241, 0.38);
+  --accent-glow: rgba(99, 102, 241, 0.35);
+  --btn-primary-text: #ffffff;
+
+  /* Lively Status & Signal Accents */
+  --green: #10b981;
+  --green-hover: #059669;
+  --green-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --green-glow: rgba(16, 185, 129, 0.45);
+  --green-bg: rgba(16, 185, 129, 0.12);
+  --green-border: rgba(16, 185, 129, 0.28);
+
+  --red: #f43f5e;
+  --red-hover: #e11d48;
+  --red-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  --red-glow: rgba(244, 63, 94, 0.38);
+  --red-bg: rgba(244, 63, 94, 0.1);
+  --red-border: rgba(244, 63, 94, 0.28);
+
+  --warn: #f59e0b;
+  --warn-hover: #d97706;
+  --warn-glow: rgba(245, 158, 11, 0.38);
+  --warn-bg: rgba(245, 158, 11, 0.12);
+  --warn-border: rgba(245, 158, 11, 0.28);
+
+  --cyan: #0ea5e9;
+  --cyan-glow: rgba(14, 165, 233, 0.45);
+  --cyan-bg: rgba(14, 165, 233, 0.12);
+  --cyan-border: rgba(14, 165, 233, 0.25);
+
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.5);
+  --purple-bg: rgba(139, 92, 246, 0.12);
+  --purple-border: rgba(139, 92, 246, 0.28);
+
+  /* HTTP Method Badges - Lively Jewel Tones */
+  --method-get-text: #059669;
+  --method-get-bg: rgba(16, 185, 129, 0.14);
+  --method-get-border: rgba(16, 185, 129, 0.32);
+  --method-get-shadow: 0 0 8px rgba(16, 185, 129, 0.15);
+
+  --method-post-text: #2563eb;
+  --method-post-bg: rgba(37, 99, 235, 0.14);
+  --method-post-border: rgba(37, 99, 235, 0.32);
+  --method-post-shadow: 0 0 8px rgba(37, 99, 235, 0.15);
+
+  --method-put-text: #d97706;
+  --method-put-bg: rgba(245, 158, 11, 0.15);
+  --method-put-border: rgba(245, 158, 11, 0.35);
+  --method-put-shadow: 0 0 8px rgba(245, 158, 11, 0.15);
+
+  --method-delete-text: #e11d48;
+  --method-delete-bg: rgba(244, 63, 94, 0.14);
+  --method-delete-border: rgba(244, 63, 94, 0.32);
+  --method-delete-shadow: 0 0 8px rgba(244, 63, 94, 0.15);
+
+  --method-any-text: #7c3aed;
+  --method-any-bg: rgba(124, 58, 237, 0.14);
+  --method-any-border: rgba(124, 58, 237, 0.32);
+  --method-any-shadow: 0 0 8px rgba(124, 58, 237, 0.15);
+
+  /* Neumorphic Dual Shadows (Outset - Raised 3D Light Surface) */
+  --neu-outset-xs: -2px -2px 5px #ffffff, 2px 2px 5px rgba(166, 180, 200, 0.45);
+  --neu-outset-sm: -3px -3px 7px #ffffff, 3px 3px 8px rgba(166, 180, 200, 0.5);
+  --neu-outset: -5px -5px 12px #ffffff, 5px 5px 13px rgba(166, 180, 200, 0.58);
+  --neu-outset-hover: -6px -6px 15px #ffffff, 6px 6px 16px rgba(166, 180, 200, 0.65);
+  --neu-outset-lg: -8px -8px 22px #ffffff, 8px 8px 24px rgba(166, 180, 200, 0.7);
+
+  /* Neumorphic Dual Shadows (Inset - Debossed Wells Light Surface) */
+  --neu-inset-xs: inset 1px 1px 3px rgba(166, 180, 200, 0.4), inset -1px -1px 3px #ffffff;
+  --neu-inset-sm: inset 2px 2px 5px rgba(166, 180, 200, 0.45), inset -2px -2px 5px #ffffff;
+  --neu-inset: inset 3px 3px 7px rgba(166, 180, 200, 0.52), inset -3px -3px 7px #ffffff;
+  --neu-inset-deep: inset 4px 4px 10px rgba(166, 180, 200, 0.6), inset -4px -4px 10px #ffffff;
+  --neu-inset-focus: inset 2px 2px 5px rgba(166, 180, 200, 0.45), inset -2px -2px 5px #ffffff, 0 0 0 2.5px rgba(99, 102, 241, 0.45);
+
+  /* Toggle Slider Track */
+  --slider-track-bg: #e2e8f2;
+  --slider-active-bg: var(--green-gradient);
+  --slider-active-shadow: 0 0 10px var(--green-glow);
+
+  /* Scrollbars */
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+  color-scheme: light;
+}
+
+/* --------------------------------------------------------------------------
+   2. Design Tokens: Lively Neumorphic Dark Mode
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Neumorphic Canvas & Surfaces (Deep high-tech midnight slate) */
+    --bg: #181b24;
+    --panel: #181b24;
+    --panel-hover: #1f232f;
+    --panel-sunken: #13151d;
+    --panel-elevated: #222634;
+
+    /* Subtle 3D Specular Boundaries */
+    --border-highlight: rgba(255, 255, 255, 0.08);
+    --border-shadow: rgba(0, 0, 0, 0.7);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(129, 140, 248, 0.4);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --input-border: rgba(255, 255, 255, 0.08);
+
+    /* Typography */
+    --text: #f1f5f9;
+    --text-dim: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Lively Primary Brand & Accent (Luminous Electric Indigo) */
+    --accent: #818cf8;
+    --accent-hover: #93c5fd;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #a855f7 100%);
+    --accent-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #9333ea 100%);
+    --accent-shadow: rgba(129, 140, 248, 0.45);
+    --accent-glow: rgba(129, 140, 248, 0.4);
+    --btn-primary-text: #ffffff;
+
+    /* Lively Status & Signal Accents */
+    --green: #34d399;
+    --green-hover: #10b981;
+    --green-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --green-glow: rgba(52, 211, 153, 0.5);
+    --green-bg: rgba(52, 211, 153, 0.15);
+    --green-border: rgba(52, 211, 153, 0.32);
+
+    --red: #fb7185;
+    --red-hover: #f43f5e;
+    --red-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+    --red-glow: rgba(251, 113, 133, 0.45);
+    --red-bg: rgba(251, 113, 133, 0.15);
+    --red-border: rgba(251, 113, 133, 0.32);
+
+    --warn: #fbbf24;
+    --warn-hover: #f59e0b;
+    --warn-glow: rgba(251, 191, 36, 0.45);
+    --warn-bg: rgba(251, 191, 36, 0.15);
+    --warn-border: rgba(251, 191, 36, 0.32);
+
+    --cyan: #38bdf8;
+    --cyan-glow: rgba(56, 189, 248, 0.5);
+    --cyan-bg: rgba(56, 189, 248, 0.15);
+    --cyan-border: rgba(56, 189, 248, 0.3);
+
+    --purple: #c084fc;
+    --purple-glow: rgba(192, 132, 252, 0.55);
+    --purple-bg: rgba(192, 132, 252, 0.16);
+    --purple-border: rgba(192, 132, 252, 0.32);
+
+    /* HTTP Method Badges - Lively Jewel Tones */
+    --method-get-text: #34d399;
+    --method-get-bg: rgba(52, 211, 153, 0.16);
+    --method-get-border: rgba(52, 211, 153, 0.32);
+    --method-get-shadow: 0 0 10px rgba(52, 211, 153, 0.25);
+
+    --method-post-text: #60a5fa;
+    --method-post-bg: rgba(96, 165, 250, 0.16);
+    --method-post-border: rgba(96, 165, 250, 0.32);
+    --method-post-shadow: 0 0 10px rgba(96, 165, 250, 0.25);
+
+    --method-put-text: #fbbf24;
+    --method-put-bg: rgba(251, 191, 36, 0.16);
+    --method-put-border: rgba(251, 191, 36, 0.35);
+    --method-put-shadow: 0 0 10px rgba(251, 191, 36, 0.25);
+
+    --method-delete-text: #fb7185;
+    --method-delete-bg: rgba(251, 113, 133, 0.16);
+    --method-delete-border: rgba(251, 113, 133, 0.32);
+    --method-delete-shadow: 0 0 10px rgba(251, 113, 133, 0.25);
+
+    --method-any-text: #c084fc;
+    --method-any-bg: rgba(192, 132, 252, 0.16);
+    --method-any-border: rgba(192, 132, 252, 0.35);
+    --method-any-shadow: 0 0 10px rgba(192, 132, 252, 0.25);
+
+    /* Neumorphic Dual Shadows (Outset - Raised 3D Dark Surface) */
+    --neu-outset-xs: -2px -2px 5px rgba(255, 255, 255, 0.04), 2px 2px 6px rgba(0, 0, 0, 0.7);
+    --neu-outset-sm: -3px -3px 7px rgba(255, 255, 255, 0.05), 3px 3px 9px rgba(0, 0, 0, 0.75);
+    --neu-outset: -5px -5px 12px rgba(255, 255, 255, 0.04), 5px 5px 14px rgba(0, 0, 0, 0.85);
+    --neu-outset-hover: -6px -6px 15px rgba(255, 255, 255, 0.06), 6px 6px 17px rgba(0, 0, 0, 0.9);
+    --neu-outset-lg: -8px -8px 22px rgba(255, 255, 255, 0.05), 8px 8px 24px rgba(0, 0, 0, 0.95);
+
+    /* Neumorphic Dual Shadows (Inset - Debossed Wells Dark Surface) */
+    --neu-inset-xs: inset 1px 1px 3px rgba(0, 0, 0, 0.75), inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+    --neu-inset-sm: inset 2px 2px 5px rgba(0, 0, 0, 0.8), inset -2px -2px 5px rgba(255, 255, 255, 0.04);
+    --neu-inset: inset 3px 3px 7px rgba(0, 0, 0, 0.88), inset -3px -3px 7px rgba(255, 255, 255, 0.04);
+    --neu-inset-deep: inset 4px 4px 10px rgba(0, 0, 0, 0.92), inset -4px -4px 10px rgba(255, 255, 255, 0.03);
+    --neu-inset-focus: inset 2px 2px 5px rgba(0, 0, 0, 0.85), inset -2px -2px 5px rgba(255, 255, 255, 0.04), 0 0 0 2.5px rgba(129, 140, 248, 0.5);
+
+    /* Toggle Slider Track */
+    --slider-track-bg: #13151d;
+    --slider-active-bg: var(--green-gradient);
+    --slider-active-shadow: 0 0 12px var(--green-glow);
+
+    /* Scrollbars */
+    --scrollbar-thumb: #334155;
+    --scrollbar-thumb-hover: #475569;
+
+    color-scheme: dark;
+  }
+}
+
+/* Explicit Dark Theme override via attribute or class */
+[data-theme="dark"],
+body.dark-theme {
+  --bg: #181b24;
+  --panel: #181b24;
+  --panel-hover: #1f232f;
+  --panel-sunken: #13151d;
+  --panel-elevated: #222634;
+
+  --border-highlight: rgba(255, 255, 255, 0.08);
+  --border-shadow: rgba(0, 0, 0, 0.7);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(129, 140, 248, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(255, 255, 255, 0.08);
+
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+
+  --accent: #818cf8;
+  --accent-hover: #93c5fd;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #a855f7 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #9333ea 100%);
+  --accent-shadow: rgba(129, 140, 248, 0.45);
+  --accent-glow: rgba(129, 140, 248, 0.4);
+  --btn-primary-text: #ffffff;
+
+  --green: #34d399;
+  --green-hover: #10b981;
+  --green-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --green-glow: rgba(52, 211, 153, 0.5);
+  --green-bg: rgba(52, 211, 153, 0.15);
+  --green-border: rgba(52, 211, 153, 0.32);
+
+  --red: #fb7185;
+  --red-hover: #f43f5e;
+  --red-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  --red-glow: rgba(251, 113, 133, 0.45);
+  --red-bg: rgba(251, 113, 133, 0.15);
+  --red-border: rgba(251, 113, 133, 0.32);
+
+  --warn: #fbbf24;
+  --warn-hover: #f59e0b;
+  --warn-glow: rgba(251, 191, 36, 0.45);
+  --warn-bg: rgba(251, 191, 36, 0.15);
+  --warn-border: rgba(251, 191, 36, 0.32);
+
+  --cyan: #38bdf8;
+  --cyan-glow: rgba(56, 189, 248, 0.5);
+  --cyan-bg: rgba(56, 189, 248, 0.15);
+  --cyan-border: rgba(56, 189, 248, 0.3);
+
+  --purple: #c084fc;
+  --purple-glow: rgba(192, 132, 252, 0.55);
+  --purple-bg: rgba(192, 132, 252, 0.16);
+  --purple-border: rgba(192, 132, 252, 0.32);
+
+  --method-get-text: #34d399;
+  --method-get-bg: rgba(52, 211, 153, 0.16);
+  --method-get-border: rgba(52, 211, 153, 0.32);
+  --method-get-shadow: 0 0 10px rgba(52, 211, 153, 0.25);
+
+  --method-post-text: #60a5fa;
+  --method-post-bg: rgba(96, 165, 250, 0.16);
+  --method-post-border: rgba(96, 165, 250, 0.32);
+  --method-post-shadow: 0 0 10px rgba(96, 165, 250, 0.25);
+
+  --method-put-text: #fbbf24;
+  --method-put-bg: rgba(251, 191, 36, 0.16);
+  --method-put-border: rgba(251, 191, 36, 0.35);
+  --method-put-shadow: 0 0 10px rgba(251, 191, 36, 0.25);
+
+  --method-delete-text: #fb7185;
+  --method-delete-bg: rgba(251, 113, 133, 0.16);
+  --method-delete-border: rgba(251, 113, 133, 0.32);
+  --method-delete-shadow: 0 0 10px rgba(251, 113, 133, 0.25);
+
+  --method-any-text: #c084fc;
+  --method-any-bg: rgba(192, 132, 252, 0.16);
+  --method-any-border: rgba(192, 132, 252, 0.35);
+  --method-any-shadow: 0 0 10px rgba(192, 132, 252, 0.25);
+
+  --neu-outset-xs: -2px -2px 5px rgba(255, 255, 255, 0.04), 2px 2px 6px rgba(0, 0, 0, 0.7);
+  --neu-outset-sm: -3px -3px 7px rgba(255, 255, 255, 0.05), 3px 3px 9px rgba(0, 0, 0, 0.75);
+  --neu-outset: -5px -5px 12px rgba(255, 255, 255, 0.04), 5px 5px 14px rgba(0, 0, 0, 0.85);
+  --neu-outset-hover: -6px -6px 15px rgba(255, 255, 255, 0.06), 6px 6px 17px rgba(0, 0, 0, 0.9);
+  --neu-outset-lg: -8px -8px 22px rgba(255, 255, 255, 0.05), 8px 8px 24px rgba(0, 0, 0, 0.95);
+
+  --neu-inset-xs: inset 1px 1px 3px rgba(0, 0, 0, 0.75), inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+  --neu-inset-sm: inset 2px 2px 5px rgba(0, 0, 0, 0.8), inset -2px -2px 5px rgba(255, 255, 255, 0.04);
+  --neu-inset: inset 3px 3px 7px rgba(0, 0, 0, 0.88), inset -3px -3px 7px rgba(255, 255, 255, 0.04);
+  --neu-inset-deep: inset 4px 4px 10px rgba(0, 0, 0, 0.92), inset -4px -4px 10px rgba(255, 255, 255, 0.03);
+  --neu-inset-focus: inset 2px 2px 5px rgba(0, 0, 0, 0.85), inset -2px -2px 5px rgba(255, 255, 255, 0.04), 0 0 0 2.5px rgba(129, 140, 248, 0.5);
+
+  --slider-track-bg: #13151d;
+  --slider-active-bg: var(--green-gradient);
+  --slider-active-shadow: 0 0 12px var(--green-glow);
+
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base & Reset
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.45;
+  width: 100%;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Neumorphic Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  box-shadow: var(--neu-inset-xs);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  box-shadow: var(--neu-outset-xs);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Branding
+   -------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--bg);
+  box-shadow: 0 4px 12px rgba(166, 180, 200, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 10;
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+[data-theme="dark"] .header,
+body.dark-theme .header {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  box-shadow: 0 0 10px var(--accent-glow), var(--neu-outset-xs);
+  flex-shrink: 0;
+  position: relative;
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--accent-glow);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 14px var(--accent-glow);
+    transform: scale(1.1);
+  }
+}
+
+.brand-name {
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   5. Neumorphic Switches & Tactile Toggles
+   -------------------------------------------------------------------------- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Recessed Inset Track */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--slider-track-bg);
+  border-radius: 24px;
+  box-shadow: var(--neu-inset-sm);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Extruded Raised 3D Knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  top: 3px;
+  background: var(--panel);
+  border-radius: 50%;
+  box-shadow: var(--neu-outset-sm);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Active State: Glowing Lively Track */
+input:checked + .slider {
+  background: var(--slider-active-bg);
+  border-color: var(--green-border);
+  box-shadow: var(--slider-active-shadow), var(--neu-inset-xs);
+}
+
+input:checked + .slider::before {
+  transform: translateX(20px);
+  background: #ffffff;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Mini switch in rule summaries */
+.switch-sm {
+  width: 32px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.switch-sm .slider {
+  border-radius: 18px;
+}
+
+.switch-sm .slider::before {
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  top: 2px;
+}
+
+.switch-sm input:checked + .slider::before {
+  transform: translateX(14px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Presets Bar & Segmented Control Tabs
+   -------------------------------------------------------------------------- */
+.presets-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg);
+}
+
+/* Neumorphic Sunken Select */
+.preset-select {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--input-border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: var(--neu-inset-sm);
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.preset-select:focus {
+  box-shadow: var(--neu-inset-focus);
+  border-color: var(--border-hover);
+}
+
+/* Neumorphic Segmented Tab Bar */
+.tab-bar {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  margin: 6px 16px 12px;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: var(--neu-inset);
+  border: 1px solid var(--border);
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 9px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+/* Active Tab: Pops out as an Extruded 3D Neumorphic Pill */
+.tab-btn.active {
+  background: var(--bg);
+  color: var(--accent);
+  font-weight: 700;
+  box-shadow: var(--neu-outset-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.tab-btn:active {
+  box-shadow: var(--neu-inset-xs);
+  transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Tactile Neumorphic Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  user-select: none;
+}
+
+/* Primary Vibrant Neumorphic Button (+ New Rule, Save) */
+.btn-primary {
+  background: var(--accent-gradient);
+  color: var(--btn-primary-text);
+  box-shadow: var(--neu-outset-sm), 0 4px 12px var(--accent-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--accent-gradient-hover);
+  transform: translateY(-1.5px);
+  box-shadow: var(--neu-outset-hover), 0 6px 16px var(--accent-shadow);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: var(--neu-inset-sm), 0 2px 6px var(--accent-shadow);
+}
+
+/* Secondary / Ghost Tactile Neumorphic Button */
+.btn-ghost {
+  background: var(--bg);
+  color: var(--text-dim);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-outset-sm);
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+  box-shadow: var(--neu-outset-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: translateY(1px);
+  color: var(--accent);
+}
+
+.action-bar {
+  padding: 4px 16px 10px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Neumorphic Rule Cards & Editor Accordion
+   -------------------------------------------------------------------------- */
+.rule-list {
+  padding: 6px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Extruded 3D Card */
+.rule-card {
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  box-shadow: var(--neu-outset);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.2s ease;
+}
+
+.rule-card:hover {
+  box-shadow: var(--neu-outset-hover);
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+}
+
+.rule-summary {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.rule-summary:hover {
+  background: var(--panel-hover);
+}
+
+/* HTTP Method Badge - Lively Jewel Tones with Neumorphic Debossing */
+.rule-method {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  padding: 3px 8px;
+  border-radius: 7px;
+  flex-shrink: 0;
+  box-shadow: var(--neu-inset-xs);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  transition: all 0.2s ease;
+}
+
+.rule-method[data-method="GET"] {
+  color: var(--method-get-text);
+  background: var(--method-get-bg);
+  border-color: var(--method-get-border);
+  box-shadow: var(--neu-inset-xs), var(--method-get-shadow);
+}
+
+.rule-method[data-method="POST"] {
+  color: var(--method-post-text);
+  background: var(--method-post-bg);
+  border-color: var(--method-post-border);
+  box-shadow: var(--neu-inset-xs), var(--method-post-shadow);
+}
+
+.rule-method[data-method="PUT"],
+.rule-method[data-method="PATCH"] {
+  color: var(--method-put-text);
+  background: var(--method-put-bg);
+  border-color: var(--method-put-border);
+  box-shadow: var(--neu-inset-xs), var(--method-put-shadow);
+}
+
+.rule-method[data-method="DELETE"] {
+  color: var(--method-delete-text);
+  background: var(--method-delete-bg);
+  border-color: var(--method-delete-border);
+  box-shadow: var(--neu-inset-xs), var(--method-delete-shadow);
+}
+
+.rule-method[data-method="*"] {
+  color: var(--method-any-text);
+  background: var(--method-any-bg);
+  border-color: var(--method-any-border);
+  box-shadow: var(--neu-inset-xs), var(--method-any-shadow);
+}
+
+.rule-path {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.rule-path.warn {
+  color: var(--warn);
+  text-decoration: underline;
+  text-decoration-color: var(--warn);
+}
+
+/* Extruded Round Expand Button */
+.rule-expand-btn {
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-outset-xs);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.rule-expand-btn:hover {
+  color: var(--accent);
+  box-shadow: var(--neu-outset-sm);
+  transform: scale(1.05);
+}
+
+.rule-expand-btn:active {
+  box-shadow: var(--neu-inset-xs);
+  transform: scale(0.95);
+}
+
+.rule-card:has(.rule-editor.expanded) .rule-expand-btn {
+  transform: rotate(180deg);
+  color: var(--accent);
+  box-shadow: var(--neu-inset-xs);
+}
+
+/* Editor Accordion */
+.rule-editor {
+  max-height: 0;
+  overflow: hidden;
+  border-top: 0 solid var(--border);
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-top-width 0.2s ease,
+    opacity 0.25s ease;
+}
+
+.rule-editor.expanded {
+  max-height: 950px;
+  opacity: 1;
+  border-top: 1px solid var(--border);
+}
+
+.rule-editor-inner {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg);
+  box-shadow: var(--neu-inset-xs);
+}
+
+.rule-editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+/* Debossed Sunken Input Fields & Textareas */
+.rule-editor input,
+.rule-editor select,
+.rule-editor textarea {
+  background: var(--bg);
+  border: 1px solid var(--input-border);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  box-shadow: var(--neu-inset-sm);
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.rule-editor input:focus,
+.rule-editor select:focus,
+.rule-editor textarea:focus {
+  box-shadow: var(--neu-inset-focus);
+  border-color: var(--accent);
+}
+
+.rule-editor textarea {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row label {
+  flex: 1;
+}
+
+.rule-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.btn-delete {
+  color: var(--red);
+}
+
+.btn-delete:hover {
+  color: #ffffff;
+  background: var(--red-gradient);
+  border-color: var(--red-border);
+  box-shadow: var(--neu-outset-sm), 0 0 10px var(--red-glow);
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   9. Neumorphic Logs View & Traffic Entries
+   -------------------------------------------------------------------------- */
+.log-list {
+  padding: 6px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* Extruded Log Card */
+.log-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-outset-sm);
+  border-radius: 11px;
+  padding: 10px 14px;
+  font-size: 11px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.log-entry:hover {
+  box-shadow: var(--neu-outset-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+/* Lively Jewel Dots */
+.log-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.log-dot.mocked {
+  background: var(--purple);
+  box-shadow: 0 0 8px var(--purple-glow), var(--neu-outset-xs);
+}
+
+.log-dot.real {
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow), var(--neu-outset-xs);
+}
+
+/* Method badge in logs */
+.log-method {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--bg);
+  box-shadow: var(--neu-inset-xs);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.log-method[data-method="GET"] {
+  color: var(--method-get-text);
+  background: var(--method-get-bg);
+  border-color: var(--method-get-border);
+  box-shadow: var(--neu-inset-xs), var(--method-get-shadow);
+}
+
+.log-method[data-method="POST"] {
+  color: var(--method-post-text);
+  background: var(--method-post-bg);
+  border-color: var(--method-post-border);
+  box-shadow: var(--neu-inset-xs), var(--method-post-shadow);
+}
+
+.log-method[data-method="PUT"],
+.log-method[data-method="PATCH"] {
+  color: var(--method-put-text);
+  background: var(--method-put-bg);
+  border-color: var(--method-put-border);
+  box-shadow: var(--neu-inset-xs), var(--method-put-shadow);
+}
+
+.log-method[data-method="DELETE"] {
+  color: var(--method-delete-text);
+  background: var(--method-delete-bg);
+  border-color: var(--method-delete-border);
+  box-shadow: var(--neu-inset-xs), var(--method-delete-shadow);
+}
+
+.log-method[data-method="*"] {
+  color: var(--method-any-text);
+  background: var(--method-any-bg);
+  border-color: var(--method-any-border);
+  box-shadow: var(--neu-inset-xs), var(--method-any-shadow);
+}
+
+/* Lively Status Indicators */
+.log-status {
+  font-weight: 800;
+  flex-shrink: 0;
+  width: 32px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.log-status.status-ok {
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green-glow);
+}
+
+.log-status.status-err {
+  color: var(--red);
+  text-shadow: 0 0 8px var(--red-glow);
+}
+
+.log-url {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.btn-convert {
+  flex-shrink: 0;
+  padding: 5px 10px;
+  font-size: 10px;
+  color: var(--accent);
+}
+
+.btn-convert[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: var(--neu-inset-xs);
+  border-color: transparent;
+  color: var(--text-muted);
+  transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Feedback, States & Utilities
+   -------------------------------------------------------------------------- */
+/* Floating 3D Neumorphic Toast */
+.toast {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--neu-outset-lg);
+  border: 1px solid var(--border-subtle);
+  transition: top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 100;
+  max-width: 90%;
+  text-align: center;
+}
+
+.toast.visible {
+  top: 16px;
+}
+
+.toast.success {
+  border-left: 4px solid var(--green);
+  box-shadow: var(--neu-outset-lg), 0 0 15px var(--green-glow);
+}
+
+.toast.error {
+  border-left: 4px solid var(--red);
+  box-shadow: var(--neu-outset-lg), 0 0 15px var(--red-glow);
+}
+
+.context-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 0 18px 8px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Debossed Neumorphic Empty State Well */
+.empty-state {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 34px 20px;
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--bg);
+  box-shadow: var(--neu-inset);
+  border-radius: 14px;
+  border: 1px dashed var(--border);
+  margin: 12px 16px;
+}
+
+/* Debossed Field Errors with Lively Signal Border */
+.field-error {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--red);
+  background: var(--red-bg);
+  box-shadow: var(--neu-inset-xs);
+  border: 1px solid var(--red-border);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 7px 11px;
+  margin: 4px 0 0;
+  line-height: 1.4;
+}
+
+/* Debossed Filter Chip in Logs */
+.log-filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg);
+  box-shadow: var(--neu-inset-sm);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 0 16px 12px;
+  padding: 8px 14px;
+}
+
+.log-filter-chip strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.log-filter-chip .btn {
+  padding: 4px 9px;
+  font-size: 10px;
+}

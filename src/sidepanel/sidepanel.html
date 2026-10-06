@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demeter</title>
+  <script>
+    (function() {
+      const saved = localStorage.getItem('demeter_theme');
+      const theme = (saved === 'dark' || saved === 'light')
+        ? saved
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">Demeter</span>
+    </div>
+    <div class="header-controls">
+      <button
+        id="themeToggleBtn"
+        class="theme-toggle-btn"
+        type="button"
+        aria-label="Toggle light/dark theme"
+        title="Toggle Light / Dark mode (Right-click for System theme)"
+      >
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+      <label class="switch" title="Master toggle — disables all interception without deleting rules">
+        <input type="checkbox" id="masterToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <div id="toast" class="toast"></div>
+
+  <div class="presets-bar">
+    <select id="presetSelect" class="preset-select" title="Switch which saved rule set is active">
+      <option value="">Custom (unsaved)</option>
+    </select>
+    <button id="savePresetBtn" class="btn btn-ghost" title="Save current rules as a named preset">Save as Preset</button>
+    <button id="deletePresetBtn" class="btn btn-ghost" title="Delete the selected preset" hidden>Delete</button>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="mocks">Mocks</button>
+    <button class="tab-btn" data-tab="logs">Logs</button>
+  </div>
+
+  <div class="action-bar" id="mocksTab">
+    <button id="newRuleBtn" class="btn btn-primary">+ New Rule</button>
+  </div>
+
+  <p id="presetContext" class="context-label tab-panel" data-tab-panel="mocks"></p>
+
+  <main id="ruleList" class="rule-list tab-panel" data-tab-panel="mocks">
+    <!-- rule cards injected here -->
+  </main>
+
+  <p id="emptyState" class="empty-state tab-panel" data-tab-panel="mocks">No rules yet. Click "+ New Rule" to mock your first endpoint.</p>
+
+  <div class="tab-panel" data-tab-panel="logs" hidden>
+    <p id="logContext" class="context-label"></p>
+    <div id="logFilterChip" class="log-filter-chip" hidden>
+      Filtered to rule: <strong id="logFilterRuleName"></strong>
+      <button id="clearLogFilterBtn" class="btn btn-ghost">Show all rules</button>
+    </div>
+    <div class="action-bar">
+      <button id="clearLogsBtn" class="btn btn-ghost">Clear Logs</button>
+    </div>
+    <main id="logList" class="log-list"></main>
+    <p id="emptyLogState" class="empty-state">No requests captured yet for this context. Browse the page you loaded this extension on — every fetch/XHR call will show up here.</p>
+  </div>
+
+  <template id="ruleCardTemplate">
+    <div class="rule-card" data-id="">
+      <div class="rule-summary">
+        <label class="switch switch-sm" title="Enable/disable this rule">
+          <input type="checkbox" class="rule-enabled-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span class="rule-method"></span>
+        <span class="rule-path"></span>
+        <button class="rule-expand-btn" aria-label="Expand">▾</button>
+      </div>
+      <div class="rule-editor">
+        <div class="rule-editor-inner">
+          <label>Name
+            <input type="text" class="f-name" placeholder="e.g. Slow products list" />
+          </label>
+          <label>URL pattern (glob, use * as wildcard)
+            <input type="text" class="f-url" placeholder="https://localhost:3000/api/v1/products/*" />
+          </label>
+          <p class="field-error f-url-error" hidden></p>
+          <div class="row">
+            <label>Method
+              <select class="f-method">
+                <option>*</option>
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>PATCH</option>
+                <option>DELETE</option>
+              </select>
+            </label>
+            <label>Status
+              <select class="f-status">
+                <option>200</option>
+                <option>201</option>
+                <option>400</option>
+                <option>401</option>
+                <option>403</option>
+                <option>404</option>
+                <option>500</option>
+                <option>503</option>
+              </select>
+            </label>
+            <label>Delay (ms)
+              <input type="number" class="f-delay" min="0" step="100" value="0" />
+            </label>
+          </div>
+          <p class="field-error f-delay-error" hidden></p>
+          <label>Headers (JSON)
+            <textarea class="f-headers" rows="2">{"Content-Type": "application/json"}</textarea>
+          </label>
+          <p class="field-error f-headers-error" hidden></p>
+          <label>Response body (JSON)
+            <textarea class="f-body" rows="5">{}</textarea>
+          </label>
+          <p class="field-error f-body-error" hidden></p>
+          <div class="rule-actions">
+            <button class="btn btn-ghost btn-view-logs">View Logs</button>
+            <div class="spacer"></div>
+            <button class="btn btn-ghost btn-duplicate">Duplicate</button>
+            <button class="btn btn-ghost btn-delete">Delete</button>
+            <button class="btn btn-primary btn-save">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="logEntryTemplate">
+    <div class="log-entry">
+      <span class="log-dot"></span>
+      <span class="log-method"></span>
+      <span class="log-status"></span>
+      <span class="log-url"></span>
+      <button class="btn btn-ghost btn-convert">Convert to Mock</button>
+    </div>
+  </template>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

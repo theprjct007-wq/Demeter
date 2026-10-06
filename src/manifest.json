@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Demeter API Sandbox",
+  "version": "0.1.0",
+  "description": "Intercept and mock API responses for local frontend testing.",
+  "permissions": ["storage", "sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open Demeter"
+  },
+  "_note_icons": "No icon bundled in this prototype — Chrome will use a default placeholder. Add an 'icons' block + icon.png if you want a custom one.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-bridge.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}
