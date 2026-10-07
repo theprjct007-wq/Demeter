@@ -44,3 +44,24 @@
       without it, without deleting your rules.
     - **Local and safe.** Everything runs in your own browser tab. The real
       server is never touched and other users are never affected.
+
+## Features 
+
+    **Option 1: Download the release (easiest)**
+    
+    1. Go to [Releases](../../releases) and download `demeter-v0.2.0.zip`.
+    2. Unzip it.
+    3. Open `chrome://extensions` in Chrome and turn on **Developer mode** (top right).
+    4. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
+    5. Click the Demeter icon in the toolbar to open the side panel.
+    
+    **Option 2: Build from source**
+    
+    Requires Node.js and Chrome 114 or later.
+    
+        npm install
+        npm run build
+    
+    Then follow steps 3 to 5 above, selecting the **`dist`** folder.
+    
+    > **Tip:** Select `dist`, not the project root. If Chrome says "Manifest file is missing or unreadable," you picked the wrong folder.
