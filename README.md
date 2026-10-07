@@ -4,7 +4,7 @@
     or replace API responses right in your browser, with no proxy 
     and no backend changes.
 
-    ![image alt](https://github.com/theprjct007-wq/Demeter/blob/186269e2617545a46c7fed3dcbdd242f475a636b/dracula-vampire.gif)
+    ![Demeter demo](dracula-vampire.gif)
  
 ## Layout
     src/
