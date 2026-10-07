@@ -1,9 +1,6 @@
-# Demeter — modular architecture (v0.2)
+# Demeter
 
-    npm install
-    npm run build     # or: npm run dev (watch)
-    npm test
-    # chrome://extensions → Developer mode → Load unpacked → select dist/
+    Demeter is a Chrome extension that lets you slow down, break, or replace API responses right in your browser, with no proxy and no backend changes.
 
 ## Layout
     src/
