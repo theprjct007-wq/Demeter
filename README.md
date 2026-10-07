@@ -1,6 +1,11 @@
 # Demeter
 
-    Demeter is a Chrome extension that lets you slow down, break, or replace API responses right in your browser, with no proxy and no backend changes.
+    Demeter is a Chrome extension that lets you slow down, break, 
+    or replace API responses right in your browser, with no proxy 
+    and no backend changes.
+
+    <img width="330" height="330" alt="image" src="https://github.com/user-attachments/assets/fcaa2e03-9e67-4d69-bd1e-55625a97d115" />
+
 
 ## Layout
     src/
