@@ -4,7 +4,7 @@
     or replace API responses right in your browser, with no proxy 
     and no backend changes.
 
-       <img width="330" height="330" alt="dracula-vampire" src="https://github.com/user-attachments/assets/84d7084e-76c7-4b9a-acfe-e3a9dfb01443" />
+      
 
 
 ## Layout
