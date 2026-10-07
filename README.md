@@ -4,8 +4,7 @@
     or replace API responses right in your browser, with no proxy 
     and no backend changes.
 
-    <img width="330" height="330" alt="image" src="https://github.com/user-attachments/assets/fcaa2e03-9e67-4d69-bd1e-55625a97d115" />
-
+       ![demo](https://github.com/<img width="330" height="330" alt="image" src="https://github.com/user-attachments/assets/a2a404aa-4507-4785-8f3b-21d2f9d12b50" />/assets/...)
 
 ## Layout
     src/
