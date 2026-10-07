@@ -47,9 +47,8 @@
 
 ## Features 
 
-    **Option 1: Download the release (easiest)**
-    
-    1. Go to [Releases](../../releases) and download `demeter-v0.2.0.zip`.
+
+    1. download `demeter-v0.2.0.zip`.
     2. Unzip it.
     3. Open `chrome://extensions` in Chrome and turn on **Developer mode** (top right).
     4. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
